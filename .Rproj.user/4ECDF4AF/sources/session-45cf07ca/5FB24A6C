@@ -1,0 +1,26 @@
+{
+    "id": "5FB24A6C",
+    "path": "~/Documents/BioinformaticsProjects/breast-cancer-deg-analysis/scripts/tcga_brca_limma_pipeline.R",
+    "project_path": "scripts/tcga_brca_limma_pipeline.R",
+    "type": "r_source",
+    "hash": "1941080087",
+    "contents": "",
+    "dirty": false,
+    "created": 1773765289932.0,
+    "source_on_save": false,
+    "relative_order": 1,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "31,2",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1773817359,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1773817359528,
+    "read_only": false,
+    "read_only_alternatives": []
+}
