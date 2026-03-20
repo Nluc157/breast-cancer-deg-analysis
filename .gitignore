@@ -7,3 +7,5 @@ data/.RData
 data/annotated_counts.csv
 data/filtered_counts.csv
 data/processed_counts.csv
+.Rproj.user/
+data/gencode.v36.annotation.gtf

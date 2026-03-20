@@ -1,9 +1,30 @@
+# ------------------------------------------------------------------------------
+# Differential Gene Expression Analysis of TCGA BRCA Dataset 
+#
+# Author: Nicholas Lucido
+# Description:
+# This script performs differential gene expression analysis between
+# tumor and control samples using limma. Downstream analyses include:
+# - Volcano plot visualization
+# - GO enrichment analysis
+# - KEGG enrichment analysis
+# - GSEA pathway analysis
+# - Tumor stage comparison
+#
+# Input files:
+#   data/filtered_counts_v2.csv
+#   data/metadata_v2.csv
+#
+# Output files:
+#   figures/
+#   results/
+# ------------------------------------------------------------------------------
 
 library(limma)
 library(dplyr)
 
-filtered_counts <- read.csv("data/filtered_counts.csv", row.names = 1)
-metadata <- read.csv("data/metadata.csv", row.names = 1)
+filtered_counts <- read.csv("data/filtered_counts_v2.csv", row.names = 1)
+metadata <- read.csv("data/metadata_v2.csv", row.names = 1)
 
 head(metadata)
 head(filtered_counts)
@@ -11,29 +32,29 @@ head(filtered_counts)
 dim(filtered_counts)
 dim(metadata)
 
-# Check the first few column names (sample IDs) of filtered_counts (ignoring the first two columns)
-head(colnames(filtered_counts)[3:ncol(filtered_counts)])
+# Check the first few column names (sample IDs) of filtered_counts (ignoring the first column)
+head(colnames(filtered_counts)[2:ncol(filtered_counts)])
 
 # Check the first few row names of metadata
 head(rownames(metadata))
 
-# Replace periods with dashes in filtered_counts column names (from the 3rd column onward)
-colnames(filtered_counts)[3:ncol(filtered_counts)] <- gsub("\\.", "-", colnames(filtered_counts)[3:ncol(filtered_counts)])
+# Replace periods with dashes in filtered_counts column names (from the 2nd column onward)
+colnames(filtered_counts)[2:ncol(filtered_counts)] <- gsub("\\.", "-", colnames(filtered_counts)[2:ncol(filtered_counts)])
 
 # Replace periods with dashes in metadata row names
 rownames(metadata) <- gsub("\\.", "-", rownames(metadata))
 
 # Check if the sample IDs match
-all(colnames(filtered_counts)[3:ncol(filtered_counts)] %in% rownames(metadata))
+all(colnames(filtered_counts)[2:ncol(filtered_counts)] %in% rownames(metadata))
 
 
 
 
 # -------------------------------------------------------------------------------
-  
-  
-  
-  
+
+
+
+
 # Differential Gene Expression Analysis (Limma) of Groups 
 
 # 1. Set 'Control' as the reference level in the Group column
@@ -44,8 +65,8 @@ metadata$Group <- relevel(metadata$Group, ref = "Control")
 design <- model.matrix(~ Group, data = metadata)
 
 # 3. Prepare expression matrix
-expr_matrix <- as.matrix(filtered_counts[, -c(1, 2)])  # Assuming columns 1 and 2 are gene IDs/names
-rownames(expr_matrix) <- filtered_counts$`Gene`     # Or use filtered_counts$Gene if preferred
+expr_matrix <- as.matrix(filtered_counts[, -1])  # Assuming column 1 is gene name
+rownames(expr_matrix) <- filtered_counts$Gene    # Or use rownames(filtered_counts) if preferred
 
 # 4. Fit the linear model and compute statistics
 fit <- lmFit(expr_matrix, design)
@@ -268,14 +289,14 @@ dev.off()
 library(limma)
 
 # Standardize sample IDs for matching
-colnames(filtered_counts)[3:ncol(filtered_counts)] <- gsub(
+colnames(filtered_counts)[2:ncol(filtered_counts)] <- gsub(
   "\\.", "-",
-  colnames(filtered_counts)[3:ncol(filtered_counts)]
+  colnames(filtered_counts)[2:ncol(filtered_counts)]
 )
 rownames(metadata) <- gsub("\\.", "-", rownames(metadata))
 
 # Create expression matrix from filtered counts
-expr_matrix <- as.matrix(filtered_counts[, -c(1, 2)])
+expr_matrix <- as.matrix(filtered_counts[, -1])
 rownames(expr_matrix) <- filtered_counts$Gene
 mode(expr_matrix) <- "numeric"
 
