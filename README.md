@@ -1,4 +1,4 @@
-<img width="3000" height="1800" alt="Top6_Genes_Boxplot" src="https://github.com/user-attachments/assets/300801ba-78a3-467e-930e-73829d00790e" /># Differential Gene Expression Analysis of Breast Cancer (TCGA BRCA)
+# Differential Gene Expression Analysis of Breast Cancer (TCGA BRCA)
 
 ## Overview
 
@@ -26,6 +26,8 @@ This repository demonstrates a complete **bioinformatics RNA-seq analysis workfl
 
 ### Tumor Stage–Associated Gene Expression
 ![Stage Gene Expression](figures/Top6_Genes_Boxplot.png)
+
+---
 
 ## Dataset
 
@@ -205,8 +207,6 @@ GO analysis identifies biological processes associated with differentially expre
 
 KEGG enrichment analysis identifies biological pathways significantly associated with breast cancer gene expression changes.
 
-![KEGG Dotplot](figures/KEGG_dotplot.png)
-
 ![KEGG Barplot](figures/KEGG_barplot.png)
 
 Results exported to:
@@ -268,8 +268,6 @@ The following genes show the strongest association with tumor stage progression.
 ## Expression Patterns of Key Genes
 
 Expression levels of the top stage-associated genes across tumor stages.
-
-![Top Genes Boxplot](figures/Top6_Genes_Boxplot.png)
 
 ---
 
